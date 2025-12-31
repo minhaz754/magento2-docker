@@ -12,17 +12,21 @@ libxslt1-dev \
 zip unzip git curl \
 && docker-php-ext-configure gd --with-freetype --with-jpeg \
 && docker-php-ext-install -j$(nproc) \
-bcmath
-intl
-mysqli
-pdo_mysql
-soap
-sockets
-xsl
-zip
-gd
+bcmath \
+intl \
+mysqli \
+pdo_mysql \
+soap \
+sockets \
+xsl \
+zip \
+gd \
+ftp \
+sockets \
 opcache
 
+# Copy Magento PHP overrides
+COPY ./conf.d/ /usr/local/etc/php/conf.d/
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
