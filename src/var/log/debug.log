@@ -1,0 +1,13 @@
+[2026-01-03T10:55:48.066439+00:00] main.ERROR: There are no commands defined in the "config" namespace.
+
+Did you mean one of these?
+    app:config
+    module:config
+    setup:config
+    setup:store-config
+#0 /var/www/html/vendor/symfony/console/Application.php(729): Symfony\Component\Console\Application->findNamespace('config')
+#1 /var/www/html/vendor/symfony/console/Application.php(266): Symfony\Component\Console\Application->find('config:show')
+#2 /var/www/html/vendor/magento/framework/Console/Cli.php(122): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/vendor/symfony/console/Application.php(175): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/html/bin/magento(23): Symfony\Component\Console\Application->run()
+#5 {main} [] []
