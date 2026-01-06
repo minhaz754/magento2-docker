@@ -142,8 +142,8 @@ docker compose exec php bin/magento info:adminuri
 ```
 # Output like
 Admin URI: /admin_l2mq9ia
+
 ## Checks	
 Storefront: http://magentotest.com
-Admin url: http://magentotest.com/admin_l2mq9ia
 
-•	Admin: http://magentotest/admin_l2mq9ian_0t##Checks
+Admin url: http://magentotest.com/admin_l2mq9ia
