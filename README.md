@@ -65,12 +65,14 @@ docker compose exec php bin/magento setup:config:set \
 ```
 
 ### If needed Sample Data installation then run below
+```bash
 docker compose exec php bin/magento sampledata:deploy
+```
 ## And add below commands while set production or developer mode
+```bash
 docker compose exec php bin/magento indexer:reindex
-
 docker compose exec php bin/magento maintenance:disable
-
+```
 
 # Magento Auth Keys Required
 You must enter:
@@ -111,33 +113,26 @@ docker compose exec php bin/magento module:status
 # You should see no missing modules.
 
 ## deploy mode set and Optimizations
+```bash
 docker compose exec php bin/magento deploy:mode:set developer
-
 docker compose exec php bin/magento setup:di:compile
-
 docker compose exec php bin/magento setup:static-content:deploy -f
-
 docker compose exec php bin/magento cache:flush
-
+```
 # Fix Ownership and permissions
+```bash
 docker compose exec php chown -R www-data:www-data var generated pub/static pub/media app/etc
-
 docker compose exec php chmod +x bin/magento
-
 docker compose exec php find var generated pub/static pub/media app/etc -type d -exec chmod 775 {} \;
-
 docker compose exec php find var generated pub/static pub/media app/etc -type f -exec chmod 664 {} \;
-
+```
 # Another way to #Fix Ownership and permissions
+```bash
 docker compose exec php chown -R www-data:www-data .
-
 docker compose exec php chmod +x bin/magento
-
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
-
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
-
-
+```
 ## Find magento Admin URL
 docker compose exec php bin/magento info:adminuri
 
