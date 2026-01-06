@@ -8,8 +8,9 @@ This guide provides a full, production-grade, Dockerized Magento 2.4.8 setup usi
 •	Redis 
 
 ###  Start containers
+```bash
 docker compose up -d –build
-
+```
 ### Opensearch configure
 ## UNBLOCK INDEX CREATION
 ```bash
@@ -44,7 +45,9 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   }'
   ```
 # verify
+```bash
 docker compose exec php curl -s http://opensearch:9200/_cluster/settings?pretty
+```
 # Expected
 •	❌ no create_index: true
 •	❌ no read_only*
@@ -98,8 +101,6 @@ docker compose exec php bin/magento setup:install \
 --currency=USD \
 --timezone=UTC \
 --use-rewrites=1 \
---cache-backend=redis \
---cache-backend-redis-server=redis \
 --search-engine=opensearch \
 --opensearch-host=opensearch \
 --opensearch-port=9200 \
@@ -109,7 +110,9 @@ docker compose exec php bin/magento setup:install \
 [SUCCESS]: Magento installation complete.
 
 ## Check Magento status
+```bash
 docker compose exec php bin/magento module:status
+```
 # You should see no missing modules.
 
 ## deploy mode set and Optimizations
