@@ -137,13 +137,13 @@ docker compose exec php find var generated vendor pub/static pub/media app/etc -
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
 ```
 ## Find magento Admin URL
+```bash
 docker compose exec php bin/magento info:adminuri
-
-# output like
+```
+# Output like
 Admin URI: /admin_l2mq9ia
 ## Checks	
-•	Storefront: http://magentotest.com
-•	Admin: http://magentotest/admin_l2mq9ia
+Storefront: http://magentotest.com
+Admin url: http://magentotest.com/admin_l2mq9ia
 
-Or admin_0t9lkgh
-##Checks
+•	Admin: http://magentotest/admin_l2mq9ian_0t##Checks
