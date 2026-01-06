@@ -62,6 +62,7 @@ docker compose exec php bin/magento setup:config:set \
 docker compose exec php bin/magento sampledata:deploy
 ## And add below commands while set production or developer mode
 docker compose exec php bin/magento indexer:reindex
+
 docker compose exec php bin/magento maintenance:disable
 
 
@@ -105,19 +106,29 @@ docker compose exec php bin/magento module:status
 
 ## deploy mode set and Optimizations
 docker compose exec php bin/magento deploy:mode:set developer
+
 docker compose exec php bin/magento setup:di:compile
+
 docker compose exec php bin/magento setup:static-content:deploy -f
+
 docker compose exec php bin/magento cache:flush
 
 # Fix Ownership and permissions
 docker compose exec php chown -R www-data:www-data var generated pub/static pub/media app/etc
+
 docker compose exec php chmod +x bin/magento
+
 docker compose exec php find var generated pub/static pub/media app/etc -type d -exec chmod 775 {} \;
+
 docker compose exec php find var generated pub/static pub/media app/etc -type f -exec chmod 664 {} \;
+
 # Another way to #Fix Ownership and permissions
 docker compose exec php chown -R www-data:www-data .
+
 docker compose exec php chmod +x bin/magento
+
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
 
 
