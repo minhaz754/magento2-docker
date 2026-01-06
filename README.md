@@ -21,6 +21,7 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   }'
 
 ## Disable Disk Threshold (Persistent)
+bash
 docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   -H "Content-Type: application/json" \
   -d '{
@@ -29,7 +30,8 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
     }
   }'
 
-#Clear ALL Cluster Blocks Explicitly
+# Clear ALL Cluster Blocks Explicitly
+bash
 docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   -H "Content-Type: application/json" \
   -d '{
