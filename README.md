@@ -1,4 +1,4 @@
-###Magento 2.4.8 Production-Grade Dockerized Setup
+### Magento 2.4.8 Production-Grade Dockerized Setup
 This guide provides a full, production-grade, Dockerized Magento 2.4.8 setup using:
 •	Magento 2.4.8
 •	Nginx 1.28
@@ -6,20 +6,6 @@ This guide provides a full, production-grade, Dockerized Magento 2.4.8 setup usi
 •	MySQL 8.0
 •	Opensearch
 •	Redis 
-###Directory structure
-magento2-docker/
-├── docker/
-│   ├── nginx/
-│   │   ├── default.conf
-│   │   └── nginx.conf
-│   ├── php/
-│   │   ├── Dockerfile
-│   │   └── conf.d/php.ini
-│   └── mysql/my.cnf
-├── src/               # Magento source
-├── .env
-└── docker-compose.yml
-
 
 ###  Start containers
 docker compose up -d –build
@@ -53,12 +39,12 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
       "cluster.blocks.create_index": false
     }
   }'
-#verify
+# verify
 docker compose exec php curl -s http://opensearch:9200/_cluster/settings?pretty
-#Expected
+# Expected
 •	❌ no create_index: true
 •	❌ no read_only*
-#Restart OpenSearch
+# Restart OpenSearch
 docker compose restart opensearch.
 
 ### Redis Configuration
@@ -110,15 +96,14 @@ docker compose exec php bin/magento setup:install \
 --opensearch-port=9200 \
 --disable-modules=Magento_TwoFactorAuth
 
-#Expected
-#[SUCCESS]: Magento installation complete.
+# Expected
+[SUCCESS]: Magento installation complete.
 
-##Check Magento status
+## Check Magento status
 docker compose exec php bin/magento module:status
-#You should see no missing modules.
+# You should see no missing modules.
 
 ## deploy mode set and Optimizations
-
 docker compose exec php bin/magento deploy:mode:set developer
 docker compose exec php bin/magento setup:di:compile
 docker compose exec php bin/magento setup:static-content:deploy -f
@@ -126,20 +111,24 @@ docker compose exec php bin/magento cache:flush
 
 # Fix Ownership and permissions
 docker compose exec php chown -R www-data:www-data var generated pub/static pub/media app/etc
-#docker compose exec php chmod +x bin/magento
+docker compose exec php chmod +x bin/magento
 docker compose exec php find var generated pub/static pub/media app/etc -type d -exec chmod 775 {} \;
 docker compose exec php find var generated pub/static pub/media app/etc -type f -exec chmod 664 {} \;
-#another way to #Fix Ownership and permissions
+# Another way to #Fix Ownership and permissions
 docker compose exec php chown -R www-data:www-data .
-#docker compose exec php chmod +x bin/magento
+docker compose exec php chmod +x bin/magento
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
 docker compose exec php find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
 
 
-##Find magento Admin URL
+## Find magento Admin URL
 docker compose exec php bin/magento info:adminuri
 
-#output like
+# output like
 Admin URI: /admin_l2mq9ia
+## Checks	
+•	Storefront: http://magentotest.com
+•	Admin: http://magentotest/admin_l2mq9ia
+
 Or admin_0t9lkgh
 ##Checks
