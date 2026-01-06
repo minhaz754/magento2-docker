@@ -12,7 +12,7 @@ docker compose up -d –build
 
 ### Opensearch configure
 ## UNBLOCK INDEX CREATION
-'''bash
+```bash
 docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   -H "Content-Type: application/json" \
   -d '{
@@ -20,9 +20,9 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
       "cluster.blocks.create_index": false
     }
   }'
-'''
+```
 ## Disable Disk Threshold (Persistent)
-'''bash
+```bash
 docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   -H "Content-Type: application/json" \
   -d '{
@@ -30,9 +30,9 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
       "cluster.routing.allocation.disk.threshold_enabled": false
     }
   }'
-'''
+```
 # Clear ALL Cluster Blocks Explicitly
-'''bash
+```bash
 docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   -H "Content-Type: application/json" \
   -d '{
@@ -42,7 +42,7 @@ docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
       "cluster.blocks.create_index": false
     }
   }'
-  '''
+  ```
 # verify
 docker compose exec php curl -s http://opensearch:9200/_cluster/settings?pretty
 # Expected
@@ -52,7 +52,7 @@ docker compose exec php curl -s http://opensearch:9200/_cluster/settings?pretty
 docker compose restart opensearch.
 
 ### Redis Configuration
-'''bash
+```bash
 docker compose exec php bin/magento setup:config:set \
 --cache-backend=redis \
 --cache-backend-redis-server=redis \
@@ -62,7 +62,7 @@ docker compose exec php bin/magento setup:config:set \
 --session-save-redis-host=redis \
 --session-save-redis-port=6379 \
 --session-save-redis-db=1
-'''
+```
 
 ### If needed Sample Data installation then run below
 docker compose exec php bin/magento sampledata:deploy
@@ -80,7 +80,7 @@ You must enter:
 
 
 ## Magento Setup Install
-'''bash
+```bash
 docker compose exec php bin/magento setup:install \ 
 --base-url=http://magentotest.com/ \
 --db-host=mysql \
@@ -102,7 +102,7 @@ docker compose exec php bin/magento setup:install \
 --opensearch-host=opensearch \
 --opensearch-port=9200 \
 --disable-modules=Magento_TwoFactorAuth
-...
+```
 # Expected
 [SUCCESS]: Magento installation complete.
 
