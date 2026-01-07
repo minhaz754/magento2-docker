@@ -66,6 +66,7 @@ docker compose exec php bin/magento sampledata:deploy
 You must enter:
 
 Username → Public Key
+
 Password → Private Key
   
 (from https://marketplace.magento.com → My Profile → Access Keys)
@@ -99,7 +100,7 @@ docker compose exec php bin/magento setup:install \
 ```bash
 docker compose exec php bin/magento module:status
 ```
-# You should see no missing modules.
+You should see no missing modules.
 
 ### Redis Configuration
 ```bash
