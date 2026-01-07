@@ -52,8 +52,9 @@ docker compose exec php curl -s http://opensearch:9200/_cluster/settings?pretty
 •	❌ no create_index: true
 •	❌ no read_only*
 # Restart OpenSearch
-docker compose restart opensearch.
-
+```bash
+docker compose restart opensearch
+```
 ### Redis Configuration
 ```bash
 docker compose exec php bin/magento setup:config:set \
