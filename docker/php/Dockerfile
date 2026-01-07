@@ -23,7 +23,6 @@ zip \
 gd \
 ftp \
 sockets \
-corn \
 opcache
 
 # Copy Magento PHP overrides
