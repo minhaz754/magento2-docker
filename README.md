@@ -11,7 +11,8 @@ This guide provides a full, production-grade, Dockerized Magento 2.4.8 setup usi
 ```bash
 docker compose up -d –build
 ```
-### Opensearch configure 
+# Opensearch configure
+
 # Unblock index creation
 
 ```bash
@@ -60,17 +61,12 @@ docker compose restart opensearch
 ```bash
 docker compose exec php bin/magento sampledata:deploy
 ```
-## And add below commands while set production or developer mode
-```bash
-docker compose exec php bin/magento indexer:reindex
-docker compose exec php bin/magento maintenance:disable
-```
 
 # Magento Auth Keys Required
 You must enter:
-	Username → Public Key
-  
-	Password → Private Key
+
+Username → Public Key
+Password → Private Key
   
 (from https://marketplace.magento.com → My Profile → Access Keys)
 
