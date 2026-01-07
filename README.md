@@ -1,4 +1,4 @@
-### Magento 2.4.8 Production-Grade Dockerized Setup
+# Magento 2.4.8 Production-Grade Dockerized Setup
 This guide provides a full, production-grade, Dockerized Magento 2.4.8 setup using:
 •	Magento 2.4.8
 •	Nginx 1.28
@@ -7,12 +7,13 @@ This guide provides a full, production-grade, Dockerized Magento 2.4.8 setup usi
 •	Opensearch
 •	Redis 
 
-###  Start containers
+# Start containers
 ```bash
 docker compose up -d –build
 ```
-### Opensearch configure
-## UNBLOCK INDEX CREATION
+### Opensearch configure 
+# Unblock index creation
+
 ```bash
 docker compose exec php curl -X PUT http://opensearch:9200/_cluster/settings \
   -H "Content-Type: application/json" \
@@ -67,10 +68,11 @@ docker compose exec php bin/magento maintenance:disable
 
 # Magento Auth Keys Required
 You must enter:
-•	Username → Public Key
-•	Password → Private Key
+	Username → Public Key
+  
+	Password → Private Key
+  
 (from https://marketplace.magento.com → My Profile → Access Keys)
-
 
 ## Magento Setup Install
 ```bash
@@ -115,11 +117,13 @@ docker compose exec php bin/magento setup:config:set \
 --session-save-redis-port=6379 \
 --session-save-redis-db=1
 ```
-## deploy mode set and Optimizations
+# Deploy mode set and Optimizations
 ```bash
 docker compose exec php bin/magento deploy:mode:set developer
 docker compose exec php bin/magento setup:di:compile
 docker compose exec php bin/magento setup:static-content:deploy -f
+docker compose exec php bin/magento indexer:reindex
+docker compose exec php bin/magento maintenance:disable
 docker compose exec php bin/magento cache:flush
 ```
 # Fix Ownership and permissions
