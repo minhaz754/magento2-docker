@@ -74,7 +74,7 @@ You must enter:
 
 ## Magento Setup Install
 ```bash
-docker compose exec php bin/magento setup:install \ 
+docker compose exec php bin/magento setup:install \
 --base-url=http://magentotest.com/ \
 --db-host=mysql \
 --db-name=magento \
