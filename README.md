@@ -55,19 +55,6 @@ docker compose exec php curl -s http://opensearch:9200/_cluster/settings?pretty
 ```bash
 docker compose restart opensearch
 ```
-### Redis Configuration
-```bash
-docker compose exec php bin/magento setup:config:set \
---cache-backend=redis \
---cache-backend-redis-server=redis \
---cache-backend-redis-db=0
-docker compose exec php bin/magento setup:config:set \
---session-save=redis \
---session-save-redis-host=redis \
---session-save-redis-port=6379 \
---session-save-redis-db=1
-```
-
 ### If needed Sample Data installation then run below
 ```bash
 docker compose exec php bin/magento sampledata:deploy
@@ -116,6 +103,18 @@ docker compose exec php bin/magento module:status
 ```
 # You should see no missing modules.
 
+### Redis Configuration
+```bash
+docker compose exec php bin/magento setup:config:set \
+--cache-backend=redis \
+--cache-backend-redis-server=redis \
+--cache-backend-redis-db=0
+docker compose exec php bin/magento setup:config:set \
+--session-save=redis \
+--session-save-redis-host=redis \
+--session-save-redis-port=6379 \
+--session-save-redis-db=1
+```
 ## deploy mode set and Optimizations
 ```bash
 docker compose exec php bin/magento deploy:mode:set developer
